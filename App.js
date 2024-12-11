@@ -1,57 +1,49 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View ,Image, Button, Alert, TouchableOpacity} from 'react-native';
-export default function App() {
-  //const CounterScreen = () => {
-    const [counter, setCounter] = useState(0);
-    return (
-      <View style = {{ marginTop: 50}}>
-        <Button title="Increase"
-          onPress={() => { setCounter(counter + 1); }} />
-        <Button title="Decrease"
-          onPress={() => {
-            counter > 0 ? setCounter(counter - 1) : setCounter(counter * 0)
-          }} />
-        <Button title="Reset" color={"#9CABB4"}
-          onPress={() => { setCounter(counter * 0); }} />
-        <Text style={{ fontSize: 28 }}>Current Count: {counter}</Text>
-      </View>
-    );
-  };
 
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       <View style={{ width: 100, height: 50 }}>
-//         <Button title='Carnage' color={"red"} onPress={() => Alert.alert("Welcome","Vote for Carnage")}/>
-//       </View>
-//       <View style={styles.ContentGroup}>
-//         <TouchableOpacity style={styles.button} onPress={() => Alert.alert("Welcome","คุณจะเอาเหรอ")}>
-//         <Image source={{ uri: "https://cdn.marvel.com/u/prod/marvel/i/mg/6/80/66bb7142277fc/clean.jpg" }}
-//         style={styles.ImageStyle}></Image>
-//         </TouchableOpacity>
-//         <View style={{ padding: 30 }}>
-//             <Text style={styles.text}>Carnage</Text>
-//             <Text>by thitirat</Text>
-//           </View>
-//       </View>
-//       <View style={styles.ContentGroup}>
-//         <View style={{ padding: 15 }}>
-//             <Text style={styles.text}>DeadPool</Text>
-//             <Text>by thitirat</Text>
-//         </View>
-//         <TouchableOpacity style={styles.button} onPress={() => Alert.alert("Welcome", "มาสิครับ")}>
-//         <Image source={{ uri: "https://cdn.marvel.com/u/prod/marvel/i/mg/3/a0/56af74928a161/portrait_uncanny.jpg" }}
-//         style={styles.ImageStyle}></Image>
-//         </TouchableOpacity>
-//       </View>
-//       <View style = {{ width: 100, height: 50 }}>
-//         <Button title='DeadPool' color={"red"} onPress={() => Alert.alert("Welcome","Vote for DeadPool")}/>
-//       </View>
-//       <StatusBar style="auto" />
-//     </View>
-//   );
-// }
+export default function App() {
+  const [counter1, setCounter] = useState(0);
+  const [counter2, setCounter1] = useState(0);
+  return (
+    <View style={styles.container}>
+      <Text style = {{ margin : 10 }}>Carnage score : {counter1}</Text>
+      <View style={{ width: 100, height: 50 }}>
+        <Button title='Carnage' color={"red"} onPress={() => setCounter(counter1 + 1) || counter1 + 1 == 5? Alert.alert("Results","Carnage win!!!",
+        setCounter(counter1 * 0), setCounter1(counter2 * 0)) 
+          : setCounter(counter1 + 1)}/>
+      </View>
+      <View style={styles.ContentGroup}>
+        <TouchableOpacity style={styles.button} onPress={() => Alert.alert("Welcome","คุณจะเอาเหรอ")}>
+        <Image source={{ uri: "https://cdn.marvel.com/u/prod/marvel/i/mg/6/80/66bb7142277fc/clean.jpg" }}
+        style={styles.ImageStyle}></Image>
+        </TouchableOpacity>
+        <View style={{ padding: 30 }}>
+            <Text style={styles.text}>Carnage</Text>
+            <Text>by thitirat</Text>
+          </View>
+      </View>
+      <Button title="reset score" color={"gray"} onPress={() => Alert.alert("Score Reset", setCounter(counter1 * 0), setCounter1(counter2 * 0))}/>
+      <View style={styles.ContentGroup}>
+        <View style={{ padding: 15 }}>
+            <Text style={styles.text}>DeadPool</Text>
+            <Text>by thitirat</Text>
+        </View>
+        <TouchableOpacity style={styles.button} onPress={() => Alert.alert("Welcome", "มาสิครับ") }>
+        <Image source={{ uri: "https://cdn.marvel.com/u/prod/marvel/i/mg/3/a0/56af74928a161/portrait_uncanny.jpg" }}
+        style={styles.ImageStyle}></Image>
+        </TouchableOpacity>
+      </View>
+      <View style = {{ width: 100, height: 50 }}>
+        <Button title='DeadPool' color={"red"} onPress={() => setCounter1(counter2 + 1) || counter2 + 1 == 5? Alert.alert("Results","DeadPool win!!!", 
+        setCounter(counter1 * 0), setCounter1(counter2 * 0)) 
+          : setCounter1(counter2 + 1) } />
+      </View>
+      <Text style = {{ margin : 10 }}>DeadPool score : {counter2}</Text>
+      <StatusBar style="auto" />
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
