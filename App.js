@@ -1,79 +1,88 @@
-import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { StyleSheet, Text, View ,Image, Button, Alert, TouchableOpacity} from 'react-native';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import MsgScreen from "./src/screens/MsgScreen";
+import HomeScreen from "./src/screens/HomeScreen";
+import ComponentScreen from "./src/screens/ComponentScreen";
+import ListScreen from "./src/screens/ListScreen";
+import ModalScreen from "./src/screens/ModalScreen";
+import SwipeScreen from "./src/screens/SwipeScreen";
+import NewListScreen from "./src/screens/NewListScreen";
+import MyButton from "./src/components/MyButton";
+import CardScreen from "./src/screens/CardScreen";
+import EffectScreen from "./src/screens/EffectScreen";
+import CountState from "./src/screens/CountState";
+import RegisForm from "./src/screens/RegisFrom";
 
-export default function App() {
-  const [counter1, setCounter] = useState(0);
-  const [counter2, setCounter1] = useState(0);
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text style = {{ margin : 10 }}>Carnage score : {counter1}</Text>
-      <View style={{ width: 100, height: 50 }}>
-        <Button title='Carnage' color={"red"} onPress={() => setCounter(counter1 + 1) || counter1 + 1 == 5? Alert.alert("Results","Carnage win!!!",
-        setCounter(counter1 * 0), setCounter1(counter2 * 0)) 
-          : setCounter(counter1 + 1)}/>
-      </View>
-      <View style={styles.ContentGroup}>
-        <TouchableOpacity style={styles.button} onPress={() => Alert.alert("Welcome","คุณจะเอาเหรอ")}>
-        <Image source={{ uri: "https://cdn.marvel.com/u/prod/marvel/i/mg/6/80/66bb7142277fc/clean.jpg" }}
-        style={styles.ImageStyle}></Image>
-        </TouchableOpacity>
-        <View style={{ padding: 30 }}>
-            <Text style={styles.text}>Carnage</Text>
-            <Text>by thitirat</Text>
-          </View>
-      </View>
-      <Button title="reset score" color={"gray"} onPress={() => Alert.alert("Score Reset", setCounter(counter1 * 0), setCounter1(counter2 * 0))}/>
-      <View style={styles.ContentGroup}>
-        <View style={{ padding: 15 }}>
-            <Text style={styles.text}>DeadPool</Text>
-            <Text>by thitirat</Text>
-        </View>
-        <TouchableOpacity style={styles.button} onPress={() => Alert.alert("Welcome", "มาสิครับ") }>
-        <Image source={{ uri: "https://cdn.marvel.com/u/prod/marvel/i/mg/3/a0/56af74928a161/portrait_uncanny.jpg" }}
-        style={styles.ImageStyle}></Image>
-        </TouchableOpacity>
-      </View>
-      <View style = {{ width: 100, height: 50 }}>
-        <Button title='DeadPool' color={"red"} onPress={() => setCounter1(counter2 + 1) || counter2 + 1 == 5? Alert.alert("Results","DeadPool win!!!", 
-        setCounter(counter1 * 0), setCounter1(counter2 * 0)) 
-          : setCounter1(counter2 + 1) } />
-      </View>
-      <Text style = {{ margin : 10 }}>DeadPool score : {counter2}</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ title: "HomeScreen" }}
+        />
+        <Stack.Screen
+          name="Component"
+          component={ComponentScreen}
+          options={{ title: "ComponentScreen" }}
+        />
+        <Stack.Screen
+          name="ListScreen"
+          component={ListScreen}
+          options={{ title: "ListScreen" }}
+        />
+        <Stack.Screen
+          name="Modal"
+          component={ModalScreen}
+          options={{ title: "ModalScreen" }}
+        />
+        <Stack.Screen
+          name="Swipe"
+          component={SwipeScreen}
+          options={{ title: "SwipeScreen" }}
+        />
+        <Stack.Screen
+          name="NewList"
+          component={NewListScreen}
+          options={{ title: "NewListScreen" }}
+        />
+        <Stack.Screen
+          name="MyButton"
+          component={MyButton}
+          options={{ title: "MyButton" }}
+        />
+        <Stack.Screen
+          name="Card"
+          component={CardScreen}
+          options={{ title: "CardScreen" }}
+        />
+        <Stack.Screen
+          name="Effect"
+          component={EffectScreen}
+          options={{ title: "EffectScreen" }}
+        />
+        <Stack.Screen
+          name="Msg"
+          component={MsgScreen}
+          options={{ title: "MsgScreen" }}
+        />
+        <Stack.Screen
+          name="Count"
+          component={CountState}
+          options={{ title: "CountState" }}
+        />
+        <Stack.Screen
+          name="Regis"
+          component={RegisForm}
+          options={{ title: "RegisForm" }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#6DB1EA',
-    alignItems: 'center',
-    justifyContent: 'center',
-    
-  },
-  ContentGroup: {
-    backgroundColor: "#4E4EE4",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 15,
-    margin: 10,
-    borderRadius: 20,
-    width: 400,
-    height: 200,
-  },
-  text: {
-    fontSize: 32,
-  },
-  ImageStyle: {
-          width: 150,
-          height: 150,
-          padding: 5,
-          margin: 5,
-          borderRadius: 50,
-          borderWidth: 5,
-          borderColor: 'black'
-        }
-});
+export default App;
